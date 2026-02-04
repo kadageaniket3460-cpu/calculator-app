@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Remainder Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 20px;
+      background: #f4f6f8;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+    }
+    .box {
+      background: #ffffff;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 15px;
+    }
+    .red {
+      color: red;
+      font-weight: bold;
+    }
+    .green {
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>REMAINDER CALCULATOR</h1>
+
+<input type="number" id="num1" placeholder="Enter first number" inputmode="numeric">
+<input type="number" id="num2" placeholder="Enter second number" inputmode="numeric">
+
+<button onclick="calculate()">Calculate</button>
+
+<div class="box">
+  <h3 id="r1"></h3>
+  <p id="d1"></p>
+</div>
+
+<div class="box">
+  <h3 id="r2"></h3>
+  <p id="d2"></p>
+</div>
+
+<script>
+function calculate() {
+
+  let A = document.getElementById("num1").value;
+  let B = document.getElementById("num2").value;
+
+  // ✅ Input validation
+  if (A === "" || B === "") {
+    alert("Please enter both numbers");
+    return;
+  }
+
+  A = Number(A);
+  B = Number(B);
+
+  let sum1 = (A * 2) + B;
+  let sum2 = (B * 2) + A;
+
+  let R1 = sum1 % 8;
+  let R2 = sum2 % 8;
+
+  let r1El = document.getElementById("r1");
+  let r2El = document.getElementById("r2");
+
+  r1El.className = "";
+  r2El.className = "";
+
+  // ✅ YOUR EXACT RULE
+  if (R1 > R2) {
+    r1El.className = "red";
+  } else if (R1 < R2) {
+    r1El.className = "green";
+  }
+
+  r1El.textContent = "Calculation 1 Remainder: " + R1;
+  r2El.textContent = "Calculation 2 Remainder: " + R2;
+
+  document.getElementById("d1").textContent =
+    "( " + A + " × 2 ) + " + B + " = " + sum1 +
+    " → " + sum1 + " ÷ 8 → Remainder = " + R1;
+
+  document.getElementById("d2").textContent =
+    "( " + B + " × 2 ) + " + A + " = " + sum2 +
+    " → " + sum2 + " ÷ 8 → Remainder = " + R2;
+}
+</script>
+
+</body>
+</html>
